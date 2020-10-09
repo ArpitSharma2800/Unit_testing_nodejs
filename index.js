@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/ ", verify, (req, res, next) => {
-  res.status(200).json({ token: "verified" });
+  res.status(200).json({ token: "verified Token" });
 });
 
 app.post("/api/auth/reg2", verify, async (req, res) => {
