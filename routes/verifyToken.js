@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 module.exports = function (req, res, next) {
   if (typeof req.headers.authorization !== "undefined") {
     let token = req.headers.authorization.split(" ")[1];
-    console.log(token);
+    // console.log(token);
     if (!token) return res.status(401).send("Access Denied");
     jwt.verify(
       token,
@@ -19,7 +19,6 @@ module.exports = function (req, res, next) {
       }
     );
   } else {
-    res.status(500).send(json({ error: "Not Authorized" }));
-    throw new Error("Not Authorized");
+    res.status(403).send(json({ error: "Not Authorized" }));
   }
 };
