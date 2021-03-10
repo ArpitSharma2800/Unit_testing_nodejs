@@ -4,7 +4,7 @@ let should = chai.should();
 let expect = chai.expect;
 chai.use(chaiHttp);
 
-describe('Palatio', () => {
+describe('Palatio', async () => {
     describe('/Check server', () => {
         it('it should return server running', (done) => {
             chai.request('http://localhost:3000')
@@ -41,7 +41,6 @@ describe('Palatio', () => {
                 });
         });
     });
-
     describe('/Login', () => {
         it('it should login the user with credential', (done) => {
             let login = {
@@ -54,11 +53,35 @@ describe('Palatio', () => {
                 .end((err, res) => {
                     should.not.exist(err);
                     res.should.have.status(200);
+                    token = res.body.token
                     res.body.should.be.a('object')
                     res.body.should.have.property('useremail').eql(login.email);
                     res.body.should.have.property('username');
                     res.body.should.have.property('useremail');
                     res.body.should.have.property('user_id');
+                    res.body.should.have.property('token');
+                    done();
+                });
+        });
+    });
+
+    describe('/JWT check', () => {
+        it('it should check authenticity of JWT token', (done) => {
+            // let login = {
+            //     email: "admin@admin.com",
+            //     password: "fefefe"
+            // }
+            let token = 'Token'
+            chai.request('http://localhost:3000')
+                .get('/api/jwtCheck')
+                .set({
+                    "Authorization": `Bearer ${token}`
+                })
+                .end((err, res) => {
+                    should.not.exist(err);
+                    res.should.have.status(200);
+                    res.body.should.be.a('object')
+                    res.body.should.have.property('token').eql("verified Token");
                     res.body.should.have.property('token');
                     done();
                 });
