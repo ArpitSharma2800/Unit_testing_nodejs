@@ -13,7 +13,7 @@ describe('Palatio', () => {
                     should.not.exist(err);
                     res.should.have.status(200);
                     res.body.should.be.a('object')
-                    expect(res.body.message).to.equal('Palatio server is running....');
+                    res.body.should.have.property('message').eql('Palatio server is running....')
                     // res.body.length.should.be.eql(0);
                     done();
                 });
