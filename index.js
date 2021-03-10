@@ -10,6 +10,7 @@ const User = require("./models/register");
 const jwt = require("jsonwebtoken");
 const verify = require("./routes/verifyToken");
 const Allergy = require('./models/allergy');
+
 app.use(bodyParser.urlencoded({
   extended: false
 }));
@@ -84,7 +85,7 @@ app.post("/api/auth/login", async (req, res) => {
       user_id: user._id
     },
     "thisTokenIsSecretForPalatio", {
-      expiresIn: "10m",
+      expiresIn: "1h",
     }
   );
   res.status(200).send({
