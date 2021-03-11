@@ -22,27 +22,28 @@ describe('Palatio', async () => {
         });
     });
 
-    // describe('/Register', () => {
-    //     it('it should register the user', (done) => {
-    //         let register = {
-    //             name: "admin2",
-    //             email: "admin2@admin.com",
-    //             password: "fefefe"
-    //         }
-    //         chai.request('http://localhost:3000')
-    //             .post('/api/auth/register')
-    //             .send(register)
-    //             .end((err, res) => {
-    //                 should.not.exist(err);
-    //                 res.should.have.status(200);
-    //                 res.body.should.be.a('object')
-    //                 res.body.should.have.property('Name').eql(register.name);
-    //                 // expect(res.body.Name).to.equal(register.name);
-    //                 res.body.should.have.property('User');
-    //                 done();
-    //             });
-    //     });
-    // });
+    describe('/Register', () => {
+        it('it should register the user', (done) => {
+            let register = {
+                name: "admin2",
+                email: "admin2@admin.com",
+                password: "fefefe"
+            }
+            chai.request('http://localhost:3000')
+                .post('/api/auth/register')
+                .send(register)
+                .end((err, res) => {
+                    should.not.exist(err);
+                    res.should.have.status(200);
+                    res.body.should.be.a('object')
+                    res.body.should.have.property('Name').eql(register.name);
+                    // expect(res.body.Name).to.equal(register.name);
+                    res.body.should.have.property('User');
+                    done();
+                });
+        });
+    });
+
     describe('/Login', () => {
         it('it should login the user with credential', (done) => {
             let login = {

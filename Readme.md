@@ -7,6 +7,8 @@
 
 [__Chai Http__](https://www.chaijs.com/plugins/chai-http/) is HTTP integration testing with Chai assertions.
 
+[__chai-json-schema__](https://www.chaijs.com/plugins/chai-json-schema/) is a plugin with assertions to validate values against JSON Schema v4.
+
 ## Features
 
 - Mocha and Chai are two JavaScript frameworks commonly used together for unit testing
@@ -29,6 +31,7 @@
 $ npm install --save-dev chai
 $ npm install --save-dev mocha
 $ npm install --save-dev chai-http
+$ npm install chai-json-schema
 ```
 ### 2. Inside Package.json scripts change test to "mocha || true"
 ```sh
@@ -46,6 +49,7 @@ let chaiHttp = require('chai-http');
 let should = chai.should();
 let expect = chai.expect;
 chai.use(chaiHttp);
+chai.use(require('chai-json-schema'));
 ```
 __Now You can create your own test case taking help from the documentation of chai and chai http__
 
@@ -71,20 +75,26 @@ describe('Description', () => {
 __Run command Npm test__
 ```sh
 npm test
-> authentication@1.0.0 test D:\NODEJS\FolderName
-> mocha || true
 
+> authentication@1.0.0 test D:\NODEJS\platio_backend
+> mocha || true
 
   Palatio
     /Check server
-      √ it should return server running
+      √ it should return server running (40ms)
     /Register
-      √ it should register the user (347ms)
+      √ it should register the user (372ms)
     /Login
-      √ it should login the user with credential (615ms)
+      √ it should login the user with credential (607ms)
+    /JWT check
+      √ it should check authenticity of JWT token
+    /all allergy check
+      √ it should check all allergy (294ms)
+    /allergy check
+      √ it should check particular allergy check (267ms)
 
 
-  3 passing (992ms)
+  6 passing (2s)
 ```
 
 # Thanks a lot 
