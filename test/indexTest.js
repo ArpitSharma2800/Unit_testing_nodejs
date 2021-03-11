@@ -119,6 +119,24 @@ describe('Palatio', async () => {
     }
 
 
+    describe('/all allergy check', () => {
+        it('it should check all allergy', (done) => {
+            chai.request('http://localhost:3000')
+                .get('/api/allergies')
+                .set({
+                    "Authorization": `Bearer ${token}`
+                })
+                .end((err, res) => {
+                    should.not.exist(err);
+                    res.should.have.status(200);
+                    res.body.should.be.a('array');
+                    res.body[0].should.be.a('object');
+                    res.body[0].should.be.jsonSchema(allAllergySchema)
+                    done();
+                });
+        });
+    });
+
     describe('/allergy check', () => {
         it('it should check particular allergy check', (done) => {
             chai.request('http://localhost:3000')
@@ -131,8 +149,6 @@ describe('Palatio', async () => {
                     res.should.have.status(200);
                     res.body.should.be.a('object');
                     res.body.should.be.jsonSchema(allAllergySchema)
-                    // res.body.should.have.property('token').eql("verified Token");
-                    // res.body.should.have.property('token');
                     done();
                 });
         });
