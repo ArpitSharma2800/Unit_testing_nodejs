@@ -17,7 +17,7 @@
 - Every assertion in a test case must be met in order for the test case to pass.
 - Chai is an assertion library that is often used alongside Mocha. It provides functions and methods that help you compare the output of a certain test with its expected value.
 
-## For testing RestApis we need chai Http
+## For testing RestAPIs we need chai Http
 ### Feature of Chai Http
 - Integration test request composition
 - Test http apps or external services
